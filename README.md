@@ -6,6 +6,7 @@ monthly aggregation of HDD (Heating Day Degrees) and CDD (Cooling Day Degrees)
 Note that this is a work in progress. More parameters are possible to be aggregated with this adapter
 and will be added in the future. 
 
+
 ## Requirements 
 
 In order to use this key you need at least a "starter" plan that allows access to historic data
