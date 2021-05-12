@@ -15,21 +15,19 @@ const KelvinToFahrenHeit = (kelvin) => {
 }
 
 const customParams = {
-  city_name: true,
-  end: true,
-  days: true, 
-  threshold: false
+  request_payload: true
 }
 
 const createRequest = (input, callback) => {
   const validator = new Validator(input, customParams)
   if (validator.error) return callback(validator.error.statusCode, validator.error)
-  const jobRunID = validator.validated.id
-  const city_name = validator.validated.data.city_name
-  const end = validator.validated.data.end
-  const days = validator.validated.data.days
-  const appid = process.env.APP_ID
 
+  
+  const jobRunID = validator.validated.id
+  const city_name = validator.validated.data.request_payload.split("-")[0]
+  const days = validator.validated.data.request_payload.split("-")[1]
+  const end = validator.validated.data.request_payload.split("-")[2]
+  const appid = process.env.APP_ID
   // api has 7 day limit so we need to create several requests
   let daySeconds = 86400
   let start = end - (days * daySeconds)
