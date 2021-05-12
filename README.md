@@ -12,7 +12,13 @@ and will be added in the future.
 In order to use this key you need at least a "starter" plan that allows access to historic data
 on openweathermap. 
 
+## Input
 
+Format of the request_payload is in City,CountryCode-Days-EndDateUTC
+
+```
+curl -X POST -H "content-type:application/json" "localhost:8080" --data '{ "id": 0, "data": { "request_payload": "Amsterdam,NL-30-1620798416" } }'
+```
 ## Output
 
 ```json
