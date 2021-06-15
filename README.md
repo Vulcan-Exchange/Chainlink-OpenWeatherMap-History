@@ -14,10 +14,10 @@ on openweathermap.
 
 ## Input
 
-Format of the request_payload is in City,CountryCode-Days-EndDateUTC
+Format of the request_payload is in LAT|LON|DAYS|ENDDATEUTC
 
 ```
-curl -X POST -H "content-type:application/json" "localhost:8080" --data '{ "id": 0, "data": { "request_payload": "Amsterdam,NL-30-1620798416" } }'
+curl -X POST -H "content-type:application/json" "localhost:8080" --data '{ "id": 0, "data": { "request_payload": "51.523|-0.22|30|1620798416" } }'
 ```
 ## Output
 
