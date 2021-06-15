@@ -24,9 +24,10 @@ const createRequest = (input, callback) => {
 
   
   const jobRunID = validator.validated.id
-  const city_name = validator.validated.data.request_payload.split("-")[0]
-  const days = validator.validated.data.request_payload.split("-")[1]
-  const end = validator.validated.data.request_payload.split("-")[2]
+  const lat = validator.validated.data.request_payload.split("|")[0]
+  const lon = validator.validated.data.request_payload.split("|")[1]
+  const days = validator.validated.data.request_payload.split("|")[2]
+  const end = validator.validated.data.request_payload.split("|")[3]
   const appid = process.env.APP_ID
   // api has 7 day limit so we need to create several requests
   let daySeconds = 86400
@@ -38,7 +39,7 @@ const createRequest = (input, callback) => {
   const buildRequests = (daysLeft, start) => {
       if(daysLeft >= 7) endRequest = start + (7 * daySeconds)
       else endRequest = start + (daysLeft * daySeconds)
-      requests.push({start: start, end: endRequest, days: ((endRequest - start) / 86400), url: `http://history.openweathermap.org/data/2.5/history/city?q=${city_name}&type=hour&start=${start}&end=${end}&appid=${appid}`})
+      requests.push({start: start, end: endRequest, days: ((endRequest - start) / 86400), url: `http://history.openweathermap.org/data/2.5/history/city?lat=${lat}&lon=${lon}&type=hour&start=${start}&end=${end}&appid=${appid}`})
       daysLeft = daysLeft - 7
       start = endRequest;
       if(daysLeft > 0) buildRequests(daysLeft, start)
